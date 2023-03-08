@@ -5,25 +5,23 @@ import { Link } from "react-router-dom";
 import loading from "../../assets/img/loading.gif";
 
 export default function HomePage() {
-  const [movie, setMovie] = useState(undefined);
+  const [movie, setMovie] = useState(null);
 
   useEffect(() => {
     const URL = "https://mock-api.driven.com.br/api/v8/cineflex/movies";
     const request = axios.get(URL);
-    request.then((response) => setMovie(response.data));
-    request.catch((error) => console.log(error.response.data));
+    request.then((resp) => setMovie(resp.data));
+    request.catch((error) => console.log("Error: ", error.response.data));
   }, []);
 
-  if (movie === undefined) {
-    return <Loading src={loading} alt="loading" />;
-  }
+  if (!movie) return <Loading src={loading} />;
 
   return (
     <PageContainer>
       <h1> 🎬 Selecione o Filme</h1>
       <ListContainer>
         {movie.map((film) => (
-          <MovieContainer data-test="movie">
+          <MovieContainer key={film.id} data-test="movie">
             <Link to={`/sessoes/${film.id}`}>
               <img src={film.posterURL} alt={film.title} />
             </Link>
