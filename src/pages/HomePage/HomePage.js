@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import loading from "../../assets/img/loading.gif";
 
 export default function HomePage() {
-  const [movie, setMovie] = useState(null);
+  const [movie, setMovie] = useState(undefined);
 
   useEffect(() => {
     const URL = "https://mock-api.driven.com.br/api/v8/cineflex/movies";
@@ -14,14 +14,14 @@ export default function HomePage() {
     request.catch((error) => console.log("Error: ", error.response.data));
   }, []);
 
-  if (!movie) return <Loading src={loading} />;
+  if (movie === undefined) return <Loading src={loading} />;
 
   return (
     <PageContainer>
       <h1> 🎬 Selecione o Filme</h1>
       <ListContainer>
         {movie.map((film) => (
-          <MovieContainer key={film.id} data-test="movie">
+          <MovieContainer data-test="movie" key={film.id}>
             <Link to={`/sessoes/${film.id}`}>
               <img src={film.posterURL} alt={film.title} />
             </Link>
@@ -43,13 +43,7 @@ const PageContainer = styled.div`
   margin-top: 30px;
   padding-top: 70px;
   h1 {
-    min-width: 90vw;
-    min-height: 10vh;
-    border-radius: 3px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0px 2px 4px 2px #0000001a;
+    margin-bottom: 20px;
   }
 `;
 

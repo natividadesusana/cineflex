@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import styled from "styled-components";
 import axios from "axios";
 import loading from "../../assets/img/loading.gif";
 
 export default function SessionsPage() {
-  const [sessions, setSessions] = useState(null);
+  const [sessions, setSessions] = useState(undefined);
   const { movieID } = useParams();
 
   useEffect(() => {
@@ -15,24 +15,26 @@ export default function SessionsPage() {
     request.catch((error) => console.log("Error: ", error.response.data));
   }, [movieID]);
 
-  if (!sessions) return <Loading src={loading} />;
+  if (sessions === undefined) return <Loading src={loading} />;
 
   return (
     <PageContainer>
       <h1>🕒 Selecione o Horário</h1>
       {sessions.days.map((sessions) => (
-        <SessionContainer key={sessions.id}>
+        <SessionContainer data-test="movie-day" key={sessions.id}>
           {sessions.weekday} - {sessions.date}
           {sessions.showtimes.map((showtimes) => (
-            <ButtonsContainer key={showtimes.id}>
-              <button>{showtimes.name}</button>
-            </ButtonsContainer>
+            <Link to={`/assentos/${showtimes.id}`} key={showtimes.id}>
+              <ButtonsContainer>
+                <button data-test="showtime">{showtimes.name}</button>
+              </ButtonsContainer>
+            </Link>
           ))}
         </SessionContainer>
       ))}
-      <FooterContainer>
+      <FooterContainer data-test="footer">
         <div>
-          <img key={sessions.id} src={sessions.posterURL} alt={sessions.title} />
+          <img src={sessions.posterURL} alt={sessions.title} />
         </div>
         <div>
           <p>{sessions.title}</p>
@@ -56,35 +58,32 @@ const PageContainer = styled.div`
     margin-top: 20px;
   }
   h1 {
-    min-width: 50vw;
-    min-height: 10vh;
-    border-radius: 3px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0px 2px 4px 2px #0000001a;
     margin-bottom: 20px;
   }
 `;
+
 const SessionContainer = styled.div`
   display: flex;
-  justify-content: left;
   flex-direction: column;
   align-items: flex-start;
+  justify-content: center;
   font-family: "Roboto";
   font-size: 20px;
   color: #293845;
   padding: 0 20px;
-`;
-
-const ButtonsContainer = styled.div`
-  flex-direction: row;
-  margin: 20px 0;
-  button {
-    margin-right: 20px;
-  }
   a {
     text-decoration: none;
+  }
+`;
+
+const ButtonsContainer = styled.button`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 20px 0;
+  cursor: pointer;
+  button {
+    cursor: pointer;
   }
 `;
 
