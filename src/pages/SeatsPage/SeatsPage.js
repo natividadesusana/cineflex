@@ -38,22 +38,23 @@ export default function SeatsPage() {
   function bookSeats(event) {
     event.preventDefault();
     if (selectedSeat.length === 0) {
-      alert("Selecione um assento!");
+      alert("Por favor, selecione um assento!");
       return;
     }
-    const OBJ = {
+    const urlPost = `https://mock-api.driven.com.br/api/v8/cineflex/seats/book-many`;
+    const body = {
       ids: selectedSeat.map((event) => event.id),
       name,
       cpf,
     };
-    const URL = `https://mock-api.driven.com.br/api/v8/cineflex/seats/book-many`;
-    const request = axios.post(URL, OBJ);
+
+    const request = axios.post(urlPost, body);
     request.then((resp) => {
-      const obj = { name, cpf, seats, selectedSeat };
+      const data = { name, cpf, seats, selectedSeat };
       navigate("/sucesso");
     });
     request.catch((error) =>
-      alert("Erro: ", error.response.data, " - Por favor, tente novamente!")
+      alert("Error: ", error.response.data, " - Por favor, tente novamente!")
     );
   }
 
@@ -97,24 +98,30 @@ export default function SeatsPage() {
       </CaptionContainer>
 
       <FormContainer>
+      <form onSubmit={bookSeats}>
         Nome do Comprador:
-        <input
-          data-test="client-name"
-          onChange={(event) => setName(event.target.value)}
+        <input data-test="client-name"
           placeholder="Digite seu nome..."
+          id="name"
+          type="text"
+          required
+          value={name}
+          onChange={(event) => setName(event.target.value)}
         />
         CPF do Comprador:
-        <input
-          data-test="client-cpf"
-          onChange={(event) => setCpf(event.target.value)}
+        <input data-test="client-cpf"
           placeholder="Digite seu CPF..."
+          id="cpf"
+          type="text" 
+          pattern="\d{3}\.\d{3}\.\d{3}-\d{2}"
+          required
+          value={cpf}
+          onChange={(event) => setCpf(event.target.value)}
         />
-        <button 
-          data-test="book-seat-btn" 
-          onClick={() => bookSeats()}
-        >
+        <button data-test="book-seat-btn" type="submit">
           Reservar Assento(s)
         </button>
+      </form>
       </FormContainer>
 
       <FooterContainer>
@@ -158,11 +165,13 @@ const FormContainer = styled.div`
   width: calc(100vw - 40px);
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  justify-content: flex-start;
+  align-items: center;
   margin: 20px 0;
   font-size: 18px;
   button {
     align-self: center;
+    cursor: pointer;
   }
   input {
     width: calc(100vw - 60px);
