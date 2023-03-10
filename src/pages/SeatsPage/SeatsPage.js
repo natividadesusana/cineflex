@@ -4,7 +4,7 @@ import styled from "styled-components";
 import axios from "axios";
 import loading from "../../assets/img/loading.gif";
 
-export default function SeatsPage() {
+export default function SeatsPage({ setOrderData }) {
   const [seats, setSeats] = useState(undefined);
   const [selectedSeat, setSelectedSeat] = useState([]);
   const [name, setName] = useState("");
@@ -51,6 +51,7 @@ export default function SeatsPage() {
     const request = axios.post(urlPost, body);
     request.then((resp) => {
       const data = { name, cpf, seats, selectedSeat };
+      setOrderData(data);
       navigate("/sucesso");
     });
     request.catch((error) =>
