@@ -41,13 +41,8 @@ export default function SeatsPage({ setOrderData }) {
       alert("Por favor, selecione um assento!");
       return;
     }
+    const body = { ids: selectedSeat.map((event) => event.id), name, cpf };
     const urlPost = `https://mock-api.driven.com.br/api/v8/cineflex/seats/book-many`;
-    const body = {
-      ids: selectedSeat.map((event) => event.id),
-      name,
-      cpf,
-    };
-
     const request = axios.post(urlPost, body);
     request.then((resp) => {
       const data = { name, cpf, seats, selectedSeat };
@@ -125,7 +120,7 @@ export default function SeatsPage({ setOrderData }) {
       </form>
       </FormContainer>
 
-      <FooterContainer>
+      <FooterContainer data-test="footer">
         <div>
           <img src={seats.movie.posterURL} alt={seats.movie.title} />
         </div>
