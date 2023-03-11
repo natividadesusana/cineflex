@@ -49,7 +49,7 @@ export default function SeatsPage({ setOrderData }) {
     request.then((resp) => {
       const data = { name, cpf, seats, selectedSeat };
       setOrderData(data);
-      navigate("/sucesso");
+      navigate("/sucesso/");
     });
     request.catch((error) =>
       alert("Error: ", error.response.data, " - Por favor, tente novamente!")
