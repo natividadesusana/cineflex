@@ -16,7 +16,7 @@ export default function SeatsPage({ setOrderData }) {
     const URL = `https://mock-api.driven.com.br/api/v8/cineflex/showtimes/${sessionID}/seats`;
     const request = axios.get(URL);
     request.then((resp) => setSeats(resp.data));
-    request.catch((error) => console.log("Error: ", error.response.data));
+    request.catch((error) => console.log("Error: ", error.response.data.message));
   }, [sessionID]);
 
   if (seats === undefined) {
@@ -25,7 +25,7 @@ export default function SeatsPage({ setOrderData }) {
 
   function chooseSeat(seats) {
     if (seats.isAvailable === false) {
-      alert("Esse assento não está disponível");
+      alert("Esse assento não está disponível!");
     } else if (!selectedSeat.includes(seats)) {
       const seatArray = [...selectedSeat, seats];
       setSelectedSeat(seatArray);
@@ -52,7 +52,7 @@ export default function SeatsPage({ setOrderData }) {
       navigate("/sucesso");
     });
     request.catch((error) =>
-      alert("Error: ", error.response.data, " - Por favor, tente novamente!")
+      alert("- Por favor, tente novamente!")
     );
   }
 

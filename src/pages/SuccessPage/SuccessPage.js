@@ -18,7 +18,7 @@ export default function SuccessPage({ orderData }) {
             <p>Filme e sessão</p>
         </strong>
         <p>{seats.movie.title}</p>
-        <p>{seats.day.weekday} - {seats.name}</p>
+        <p>{seats.day.date} - {seats.name}</p>
       </TextContainer>
 
       <TextContainer data-test="seats-info">
