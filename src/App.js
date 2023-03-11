@@ -7,7 +7,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useState } from "react";
 
 export default function App() {
-  const [orderData, setOrderData] = useState(null);
+  const [orderData, setOrderData] = useState({});
 
   return (
     <BrowserRouter>

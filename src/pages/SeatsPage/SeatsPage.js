@@ -49,7 +49,7 @@ export default function SeatsPage({ setOrderData }) {
     request.then((resp) => {
       const data = { name, cpf, seats, selectedSeat };
       setOrderData(data);
-      navigate("/sucesso/");
+      navigate("/sucesso");
     });
     request.catch((error) =>
       alert("Error: ", error.response.data, " - Por favor, tente novamente!")
@@ -111,7 +111,7 @@ export default function SeatsPage({ setOrderData }) {
           placeholder="Digite seu CPF..."
           id="cpf"
           type="text" 
-          pattern="\d{3}\.\d{3}\.\d{3}-\d{2}"
+          pattern="\d{11}"
           required
           value={cpf}
           onChange={(event) => setCpf(event.target.value)}
