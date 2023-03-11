@@ -19,7 +19,9 @@ export default function SeatsPage({ setOrderData }) {
     request.catch((error) => console.log("Error: ", error.response.data));
   }, [sessionID]);
 
-  if (seats === undefined) return <Loading src={loading} />;
+  if (seats === undefined) {
+    return <Loading src={loading} />
+  };
 
   function chooseSeat(seats) {
     if (seats.isAvailable === false) {
@@ -42,7 +44,7 @@ export default function SeatsPage({ setOrderData }) {
       return;
     }
     const body = { ids: selectedSeat.map((event) => event.id), name, cpf };
-    const urlPost = `https://mock-api.driven.com.br/api/v8/cineflex/seats/book-many`;
+    const urlPost = "https://mock-api.driven.com.br/api/v8/cineflex/seats/book-many";
     const request = axios.post(urlPost, body);
     request.then((resp) => {
       const data = { name, cpf, seats, selectedSeat };

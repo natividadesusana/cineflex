@@ -15,7 +15,9 @@ export default function SessionsPage() {
     request.catch((error) => console.log("Error: ", error.response.data));
   }, [movieID]);
 
-  if (sessions === undefined) return <Loading src={loading} />;
+  if (sessions === undefined) {
+    return <Loading src={loading} />
+  }; 
 
   return (
     <PageContainer>

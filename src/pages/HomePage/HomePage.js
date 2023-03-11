@@ -14,7 +14,9 @@ export default function HomePage() {
     request.catch((error) => console.log("Error: ", error.response.data));
   }, []);
 
-  if (movie === undefined) return <Loading src={loading} />;
+  if (movie === undefined) {
+    return <Loading src={loading} />
+  };
 
   return (
     <PageContainer>
