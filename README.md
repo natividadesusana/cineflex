@@ -3,7 +3,7 @@ Cineflex Project
 <div style="display: flex; justify-content: space-between; flex-wrap: wrap;">
   <img style="width: 300px; margin-right: 20px; margin-bottom: 20px;" src="https://user-images.githubusercontent.com/95102911/224571807-3c82dbd4-7f3b-400f-af9a-212c4cc7a394.png" >
   <img style="width: 300px; margin-right: 20px; margin-bottom: 20px;" src="https://user-images.githubusercontent.com/95102911/224571818-b17ef207-9a94-4356-97ab-c08e42f22ee6.png">
-  <img style="width: 300px; margin-right: 20px; margin-bottom: 20px;" src="https://user-images.githubusercontent.com/95102911/224571820-111640d9-60b3-465f-80c5-e0a38a37e63d.png" >
+  <img style="width: 300px; margin-right: 20px; margin-top: -20px;" src="https://user-images.githubusercontent.com/95102911/224571820-111640d9-60b3-465f-80c5-e0a38a37e63d.png" >
   <img style="width: 300px; margin-right: 20px; margin-bottom: 20px;" src="https://user-images.githubusercontent.com/95102911/224571825-b30898e6-f661-4539-96b3-f5943502d1b8.png" >
 </div>
 
