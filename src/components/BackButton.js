@@ -10,7 +10,7 @@ export default function BackButton() {
   };
 
   return (
-    <Button onClick={handleGoBack}>
+    <Button data-test="go-home-header-btn" onClick={handleGoBack}>
       <img src={arrow} alt="arrow"></img>
     </Button>
   );
