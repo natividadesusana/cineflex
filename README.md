@@ -1,12 +1,11 @@
-Cineflex Project
+# Cineflex Project
 
 <div style="display: flex; justify-content: space-between; flex-wrap: wrap;">
   <img style="width: 300px; margin-right: 20px; margin-bottom: 20px;" src="https://user-images.githubusercontent.com/95102911/224571807-3c82dbd4-7f3b-400f-af9a-212c4cc7a394.png" >
   <img style="width: 300px; margin-right: 20px; margin-bottom: 20px;" src="https://user-images.githubusercontent.com/95102911/224571818-b17ef207-9a94-4356-97ab-c08e42f22ee6.png">
-  <img style="width: 300px; margin-right: 20px; margin-bottom: 20px;" src="https://user-images.githubusercontent.com/95102911/224571820-111640d9-60b3-465f-80c5-e0a38a37e63d.png" >
-  <img style="width: 300px; margin-right: 20px; margin-bottom: 40px;" src="https://user-images.githubusercontent.com/95102911/224571825-b30898e6-f661-4539-96b3-f5943502d1b8.png" >
+  <img style="width: 300px; margin-right: 20px; margin-bottom: 20px;" src="https://user-images.githubusercontent.com/95102911/224572892-58ad581a-2d26-49aa-9eeb-002546c2669a.png">
+  <img style="width: 300px; margin-right: 20px; margin-bottom: 20px;" src="https://user-images.githubusercontent.com/95102911/224571825-b30898e6-f661-4539-96b3-f5943502d1b8.png" >
 </div>
-
 
 ____
 
@@ -80,3 +79,35 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+____
+
+✅ Requirements
+
+- Movie Choice (`/` route)
+     - [ ] Fetch movie information through the provided API and display it according to the provided layout.
+     - [ ] When clicking on a movie, the user must be redirected to the route `/sessoes/:idMovie`, with `:idMovie` being the id of the movie clicked.
+- Session Choice (route `/sessoes/:idMovie`)
+     - [ ] From the id of the URL, get the available sessions for the movie from the API and display them according to the *layout* provided.
+     - [ ] When clicking on a session, the user must be redirected to the route `/assentos/:idSessao`, where `:idSessao` is the id of the chosen session.
+- Seat selection (route `/assents/:idSessao`)
+     - [ ] From the session id, fetch the session data from the API and display the layout as provided.
+     - [ ] When clicking on an available seat, the seat must be marked as "Selected".
+     - [ ] When clicking again on a selected seat, it should return to "Available".
+     - [ ] When clicking on an unavailable seat, an alert "This seat is not available" should be displayed.
+     - [ ] User can select multiple seats.
+     - [ ] The user must be able to enter the buyer's name and CPF.
+     - [ ] When clicking on "Reserve seat(s)", the request must be sent to the server and the user must be redirected to the `/success` route. This will make the marked seats unavailable for other bookings.
+- Baseboard
+     - [ ] Along the Session and Seat screens, a footer should be displayed with information about the selected film. This information will come from the API calls on each screen.
+- Success (route `/success`)
+     - [ ] Implement *layout* as provided, displaying order data.
+     - [ ] When clicking on "Return to Home" the user must return to the initial route (`/`), with the request reset.
+
+## ☑️ Bonus
+
+- back button
+     - [ ] Add a back button at the top of the site on the left
+     - [ ] The top of the site must be outside the pages components, i.e. inside the `<BrowserRouter>` of the React Router
+     - [ ] When clicking on the back button, the user must return to the page he was previously
+     - [ ] The button should not be displayed on the home screen
