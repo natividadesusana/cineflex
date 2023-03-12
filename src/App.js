@@ -36,6 +36,7 @@ const NavContainer = styled.div`
   top: 0;
   a {
     text-decoration: none;
+    background-color: black;
     color: #e8833a;
   }
 `;

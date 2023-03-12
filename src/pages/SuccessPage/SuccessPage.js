@@ -15,7 +15,7 @@ export default function SuccessPage({ orderData }) {
 
       <TextContainer data-test="movie-info">
         <strong>
-            <p>Filme e sessão</p>
+            <p>Filme e Sessão:</p>
         </strong>
         <p>{seats.movie.title}</p>
         <p>{seats.day.date} - {seats.name}</p>
@@ -23,7 +23,7 @@ export default function SuccessPage({ orderData }) {
 
       <TextContainer data-test="seats-info">
         <strong>
-          <p>Ingressos</p>
+          <p>Ingressos:</p>
         </strong>
         {selectedSeat.map((number) => (
           <p key={number.id}>Assento {number.name}</p>
@@ -32,7 +32,7 @@ export default function SuccessPage({ orderData }) {
 
       <TextContainer data-test="client-info">
         <strong>
-          <p>Comprador</p>
+          <p>Comprador:</p>
         </strong>
         <p>Nome: {name}</p>
         <p>CPF: {cpf}</p>

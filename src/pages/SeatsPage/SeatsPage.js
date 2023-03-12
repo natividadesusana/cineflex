@@ -3,6 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
 import axios from "axios";
 import loading from "../../assets/img/loading.gif";
+import BackButton from "../../components/BackButton";
 
 export default function SeatsPage({ setOrderData }) {
   const [seats, setSeats] = useState(undefined);
@@ -58,6 +59,7 @@ export default function SeatsPage({ setOrderData }) {
 
   return (
     <PageContainer>
+      <BackButton/>
       <h1>🛋 Selecione o(s) Assento(s)</h1>
       <SeatsContainer>
         {seats.seats.map((seats) => (

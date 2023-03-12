@@ -3,6 +3,7 @@ import { Link, useParams } from "react-router-dom";
 import styled from "styled-components";
 import axios from "axios";
 import loading from "../../assets/img/loading.gif";
+import BackButton from "../../components/BackButton";
 
 export default function SessionsPage() {
   const [sessions, setSessions] = useState(undefined);
@@ -21,6 +22,7 @@ export default function SessionsPage() {
 
   return (
     <PageContainer>
+      <BackButton/>
       <h1>🕒 Selecione o Horário</h1>
       {sessions.days.map((sessions) => (
         <SessionContainer data-test="movie-day" key={sessions.id}>
