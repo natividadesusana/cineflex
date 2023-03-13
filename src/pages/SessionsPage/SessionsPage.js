@@ -17,23 +17,23 @@ export default function SessionsPage() {
   }, [movieID]);
 
   if (sessions === undefined) {
-    return <Loading src={loading} />
-  }; 
+    return <Loading src={loading} />;
+  }
 
   return (
     <PageContainer>
-      <BackButton/>
+      <BackButton />
       <h1>🕒 Selecione o Horário</h1>
       {sessions.days.map((sessions) => (
         <SessionContainer data-test="movie-day" key={sessions.id}>
           {sessions.weekday} - {sessions.date}
-          {sessions.showtimes.map((showtimes) => (
-            <Link to={`/assentos/${showtimes.id}`} key={showtimes.id}>
-              <ButtonsContainer>
+          <ButtonsContainer>
+            {sessions.showtimes.map((showtimes) => (
+              <Link to={`/assentos/${showtimes.id}`} key={showtimes.id}>
                 <button data-test="showtime">{showtimes.name}</button>
-              </ButtonsContainer>
-            </Link>
-          ))}
+              </Link>
+            ))}
+          </ButtonsContainer>
         </SessionContainer>
       ))}
       <FooterContainer data-test="footer">
@@ -80,14 +80,18 @@ const SessionContainer = styled.div`
   }
 `;
 
-const ButtonsContainer = styled.button`
+const ButtonsContainer = styled.div`
   display: flex;
-  justify-content: space-between;
+  flex-direction: row;
   align-items: center;
   margin: 20px 0;
   cursor: pointer;
   button {
+    margin-right: 10px;
     cursor: pointer;
+    &:hover {
+        background-color: rgb(234 88 12);
+    }
   }
 `;
 

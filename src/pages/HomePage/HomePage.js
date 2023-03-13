@@ -71,6 +71,9 @@ const MovieContainer = styled.div`
     width: 130px;
     height: 190px;
   }
+  &:hover{
+    background-color: rgb(245 158 11);
+  }
 `;
 
 const Loading = styled.img`

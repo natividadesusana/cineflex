@@ -59,6 +59,9 @@ const PageContainer = styled.div`
   }
   button {
     margin-top: 50px;
+    &:hover {
+        background-color: rgb(234 88 12);
+    }
     cursor: pointer;
   }
   h1 {

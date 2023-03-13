@@ -99,7 +99,7 @@ export default function SeatsPage({ setOrderData }) {
 
       <FormContainer>
       <form onSubmit={bookSeats}>
-        Nome do Comprador:
+        <h1>Nome do Comprador:</h1>
         <input data-test="client-name"
           placeholder="Digite seu nome..."
           id="name"
@@ -108,7 +108,7 @@ export default function SeatsPage({ setOrderData }) {
           value={name}
           onChange={(event) => setName(event.target.value)}
         />
-        CPF do Comprador:
+        <h1>CPF do Comprador:</h1>
         <input data-test="client-cpf"
           placeholder="Digite seu CPF..."
           id="cpf"
@@ -165,16 +165,22 @@ const FormContainer = styled.div`
   width: calc(100vw - 40px);
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: center;
   align-items: center;
   margin: 20px 0;
   font-size: 18px;
   button {
     align-self: center;
+    &:hover {
+        background-color: rgb(234 88 12);
+    }
     cursor: pointer;
   }
   input {
     width: calc(100vw - 60px);
+  }
+  h1 {
+    text-align: left;
   }
 `;
 
