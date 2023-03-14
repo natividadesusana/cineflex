@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import styled from "styled-components";
 import axios from "axios";
-import loading from "../../assets/img/loading.gif";
 import BackButton from "../../components/BackButton";
+import LoadingPage from "../../components/LoadingPage";
 
 export default function SessionsPage() {
   const [sessions, setSessions] = useState(undefined);
@@ -17,7 +17,7 @@ export default function SessionsPage() {
   }, [movieID]);
 
   if (sessions === undefined) {
-    return <Loading src={loading} />;
+    return <LoadingPage />;
   }
 
   return (
@@ -132,12 +132,4 @@ const FooterContainer = styled.div`
       }
     }
   }
-`;
-
-const Loading = styled.img`
-  min-height: 40vh;
-  margin: 250px auto;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 `;

@@ -2,8 +2,10 @@ import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
 import axios from "axios";
-import loading from "../../assets/img/loading.gif";
+import Caption from "./Caption";
+import Form from "./Form";
 import BackButton from "../../components/BackButton";
+import LoadingPage from "../../components/LoadingPage";
 
 export default function SeatsPage({ setOrderData }) {
   const [seats, setSeats] = useState(undefined);
@@ -17,11 +19,11 @@ export default function SeatsPage({ setOrderData }) {
     const URL = `https://mock-api.driven.com.br/api/v8/cineflex/showtimes/${sessionID}/seats`;
     const request = axios.get(URL);
     request.then((resp) => setSeats(resp.data));
-    request.catch((error) => console.log("Error: ", error.response.data.message));
+    request.catch((error) => console.log("Error: ", error.response.data));
   }, [sessionID]);
 
   if (seats === undefined) {
-    return <Loading src={loading} />
+    return <LoadingPage />
   };
 
   function chooseSeat(seats) {
@@ -53,7 +55,7 @@ export default function SeatsPage({ setOrderData }) {
       navigate("/sucesso");
     });
     request.catch((error) =>
-      alert("- Por favor, tente novamente!")
+      alert("Erro: ", error.response.data.message)
     );
   }
 
@@ -81,49 +83,8 @@ export default function SeatsPage({ setOrderData }) {
           </SeatItem>
         ))}
       </SeatsContainer>
-
-      <CaptionContainer>
-        <CaptionItem>
-          <CaptionCircle circleColor="#1AAE9E" />
-          Selecionado
-        </CaptionItem>
-        <CaptionItem>
-          <CaptionCircle circleColor="#C3CFD9" />
-          Disponível
-        </CaptionItem>
-        <CaptionItem>
-          <CaptionCircle circleColor="#FBE192" />
-          Indisponível
-        </CaptionItem>
-      </CaptionContainer>
-
-      <FormContainer>
-      <form onSubmit={bookSeats}>
-        <h1>Nome do Comprador:</h1>
-        <input data-test="client-name"
-          placeholder="Digite seu nome..."
-          id="name"
-          type="text"
-          required
-          value={name}
-          onChange={(event) => setName(event.target.value)}
-        />
-        <h1>CPF do Comprador:</h1>
-        <input data-test="client-cpf"
-          placeholder="Digite seu CPF..."
-          id="cpf"
-          type="text" 
-          pattern="\d{11}"
-          required
-          value={cpf}
-          onChange={(event) => setCpf(event.target.value)}
-        />
-        <button data-test="book-seat-btn" type="submit">
-          Reservar Assento(s)
-        </button>
-      </form>
-      </FormContainer>
-
+      <Caption />
+      <Form setName={setName} setCpf={setCpf} bookSeats={bookSeats}/>
       <FooterContainer data-test="footer">
         <div>
           <img src={seats.movie.posterURL} alt={seats.movie.title} />
@@ -159,56 +120,6 @@ const SeatsContainer = styled.div`
   justify-content: center;
   margin-top: 20px;
   cursor: pointer;
-`;
-
-const FormContainer = styled.div`
-  width: calc(100vw - 40px);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  margin: 20px 0;
-  font-size: 18px;
-  button {
-    align-self: center;
-    &:hover {
-        background-color: rgb(234 88 12);
-    }
-    cursor: pointer;
-  }
-  input {
-    width: calc(100vw - 60px);
-  }
-  h1 {
-    text-align: left;
-  }
-`;
-
-const CaptionContainer = styled.div`
-  display: flex;
-  flex-direction: row;
-  width: 300px;
-  justify-content: space-between;
-  margin: 20px;
-`;
-
-const CaptionCircle = styled.div`
-  border: 1px solid ${(props) => props.circleColor};
-  background-color: ${(props) => props.circleColor};
-  height: 25px;
-  width: 25px;
-  border-radius: 25px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 5px 3px;
-`;
-
-const CaptionItem = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  font-size: 12px;
 `;
 
 const SeatItem = styled.div`
@@ -263,12 +174,4 @@ const FooterContainer = styled.div`
       }
     }
   }
-`;
-
-const Loading = styled.img`
-  min-height: 40vh;
-  margin: 250px auto;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 `;

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import loading from "../../assets/img/loading.gif";
+import LoadingPage from "../../components/LoadingPage";
 
 export default function HomePage() {
   const [movie, setMovie] = useState(undefined);
@@ -15,7 +15,7 @@ export default function HomePage() {
   }, []);
 
   if (movie === undefined) {
-    return <Loading src={loading} />
+    return <LoadingPage />
   };
 
   return (
@@ -74,12 +74,4 @@ const MovieContainer = styled.div`
   &:hover{
     background-color: rgb(245 158 11);
   }
-`;
-
-const Loading = styled.img`
-  min-height: 40vh;
-  margin: 250px auto;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 `;
