@@ -63,13 +63,14 @@ const PageContainer = styled.div`
   }
   h1 {
     margin-bottom: 20px;
+    margin-left: -12px;
   }
 `;
 
 const SessionContainer = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
   justify-content: center;
   font-family: "Roboto";
   font-size: 20px;
