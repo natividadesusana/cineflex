@@ -1,4 +1,6 @@
-# Cineflex Project
+# *Cineflex Project*
+
+### The Cineflex Project is a Single-Page Application (SPA) for a cinema, using React Router!
 
 <div style="display: flex; justify-content: space-between; flex-wrap: wrap;">
   <img style="width: 300px; margin-right: 20px; margin-bottom: 20px;" src="https://user-images.githubusercontent.com/95102911/224571807-3c82dbd4-7f3b-400f-af9a-212c4cc7a394.png" >
